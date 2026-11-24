@@ -106,19 +106,41 @@ class Graph:
         raise NotImplementedError
 
     def neighbors(self, node_id: Hashable) -> list[Node]:
-        raise NotImplementedError
+        """Return every node adjacent to node_id, each exactly once.
+
+        Incoming and outgoing edges both count. A node is never its own
+        neighbor, so self-loops are ignored. Raises NotFoundError if node_id
+        does not exist.
+        """
 
     def outgoing_neighbors(self, node_id: Hashable) -> list[Node]:
-        raise NotImplementedError
+        """Return every node reachable from node_id over one outgoing edge, each once.
 
-    def subgraph(self, node_ids: Iterable[Hashable]) -> Graph:
-        raise NotImplementedError
+        In an undirected graph every edge can be followed in both directions,
+        so this equals neighbors(). Self-loops are ignored. Raises
+        NotFoundError if node_id does not exist.
+        """
 
     def connected_components(self) -> list[set[Hashable]]:
-        raise NotImplementedError
+        """Return the weakly connected components as sets of node ids.
+
+        Edge direction is ignored: two nodes share a component if a path
+        joins them when every edge is treated as undirected. Isolated nodes
+        form singleton components. An empty graph has no components.
+        """
 
     def is_connected(self) -> bool:
-        raise NotImplementedError
+        """Return True if the graph has exactly one weakly connected component.
+
+        Edge direction is ignored (see connected_components). An empty graph
+        is not connected.
+        """
 
     def has_cycle(self) -> bool:
-        raise NotImplementedError
+        """Return True if the graph contains at least one cycle.
+
+        Directed graph: a cycle that follows edge direction, such as
+        A->B->A or a self-loop. Undirected graph: a closed path that never
+        reuses an edge; a self-loop counts. Directed and undirected graphs
+        need different detection algorithms.
+        """
