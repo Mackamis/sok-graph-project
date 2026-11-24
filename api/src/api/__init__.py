@@ -5,6 +5,7 @@ from .exceptions import (
     GraphConstraintError,
     GraphError,
     InvalidAttributeTypeError,
+    InvalidIdError,
     NodeHasEdgesError,
     NotFoundError,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "GraphConstraintError",
     "GraphError",
     "InvalidAttributeTypeError",
+    "InvalidIdError",
     "Node",
     "NodeHasEdgesError",
     "NotFoundError",
