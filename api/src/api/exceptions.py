@@ -9,9 +9,18 @@ class DuplicateIdError(GraphError, ValueError):
 class NotFoundError(GraphError, KeyError):
     """Raised when a referenced node, edge, or attribute key does not exist."""
 
+    def __str__(self) -> str:
+        if len(self.args) == 1:
+            return str(self.args[0])
+        return super().__str__()
+
 
 class InvalidAttributeTypeError(GraphError, TypeError):
-    """Raised when an attribute value is not an exact int, str, float, or date."""
+    """Raised when an attribute key or value has an unsupported type."""
+
+
+class InvalidIdError(GraphError, TypeError):
+    """Raised when an ID is None or cannot be hashed."""
 
 
 class NodeHasEdgesError(GraphError, ValueError):
